@@ -1,12 +1,21 @@
-const { apolloServer, gql } = require('apollo-server')
+const { ApolloServer, gql } = require('apollo-server')
 
-const typeDefs = gql ``
+const typeDefs = gql `
+    #pontos de entrada da sua API!
+    type Query {
+        ola: String
+    }
+`
 
 const resolvers = {
-
+    Query: {
+        ola() {
+            return 'Done!'
+        }
+    }
 }
 
-const server = new apolloServer({
+const server = new ApolloServer({
     typeDefs,
     resolvers
 })
