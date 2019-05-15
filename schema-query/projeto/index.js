@@ -1,10 +1,11 @@
 const { ApolloServer, gql } = require('apollo-server')
 
 const typeDefs = gql `
+    scalar Date
     #pontos de entrada da sua API!
     type Query {
         ola: String
-        horaAtual: String
+        horaAtual: Date
     }
 `
 
@@ -14,7 +15,7 @@ const resolvers = {
             return 'Done!'
         },
         horaAtual() {
-            return new Date().toString()
+            return new Date
         }
     }
 }
