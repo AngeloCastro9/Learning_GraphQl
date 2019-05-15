@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server')
 
-const typeDefs = gql `
+const typeDefs = gql`
     scalar Date
     #pontos de entrada da sua API!
     #o ! quer dizer que ele é obrigatório.
@@ -16,10 +16,26 @@ const typeDefs = gql `
         ola: String
         horaAtual: Date
         usuarioLogado: Usuario 
+        produtoEmDestaque: Produto
+    }
+    type Produto {
+        nome: String!
+        preco: Float!
+        desconto: Float
+        precoComDesconto: Float
     }
 `
 
 const resolvers = {
+    Produto: {
+        precoComDesconto(produto) {
+            if(produto.desconto) {
+                return produto.preco * (1 - produto.desconto)
+            } else {
+                return produto.preco
+            }
+        }
+    },
     Usuario: {
         salario(usuario) {
             return usuario.salario_real
@@ -42,8 +58,17 @@ const resolvers = {
                 salario_real: 1234.56,
                 vip: true
             }
+        },
+        produtoEmDestaque() {
+            return {
+                nome: 'Notebook',
+                preco: 2000.0,
+                desconto: 0.15,
+                precoComDesconto: this.preco % 100 * this.desconto
+            }
         }
-    }
+    },
+
 }
 
 const server = new ApolloServer({
