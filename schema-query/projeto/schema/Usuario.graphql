@@ -6,7 +6,14 @@
         salario: Float
         vip: Boolean
         perfil: Perfil
+        status: UsuarioStatus
     }
+
+enum UsuarioStatus {
+    ATIVO
+    INATIVO
+    BLOQUEADO
+}
 
 type Perfil {
         id: Int
