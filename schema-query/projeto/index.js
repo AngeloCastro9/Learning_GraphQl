@@ -4,17 +4,20 @@ const usuarios = [{
     id: 1,
     nome: 'Joao Silva',
     email: 'jsilva@zemail.com',
-    idade: 29
+    idade: 29,
+    perfil_id: 1
 }, {
     id: 2,
     nome: 'Rafael Junio',
     email: 'rafajun@wemail.com',
-    idade: 31
+    idade: 31,
+    perfil_id: 2
 }, {
     id: 3,
     nome: 'Daniela Smith',
     email: 'danismi@umail.com',
-    idade: 24
+    idade: 24,
+    perfil_id: 1
 }]
 
 const perfis = [
@@ -33,6 +36,7 @@ const typeDefs = gql`
         idade: Int
         salario: Float
         vip: Boolean
+        perfil: Perfil
     }
     type Query {
         ola: String
@@ -72,10 +76,10 @@ const resolvers = {
         salario(usuario) {
             return usuario.salario_real
         },
-    },
-
-    Perfil: {
-
+        perfil(usuario) {
+            const selecionados = perfis.filter(p => p.id === usuario.perfil_id)
+            return selecionados ? selecionados[0] : null
+        }
     },
     Query: {
         ola() {
