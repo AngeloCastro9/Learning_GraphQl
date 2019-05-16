@@ -17,6 +17,11 @@ const usuarios = [{
     idade: 24
 }]
 
+const perfis = [
+    { id: 1, nome: 'comum'},
+    { id: 2, nome: 'adminstrador'}
+]
+
 const typeDefs = gql`
     scalar Date
     #pontos de entrada da sua API!
@@ -37,12 +42,19 @@ const typeDefs = gql`
         numerosMegaSena: [Int!]!
         usuarios: [Usuario]
         usuario(id: Int): Usuario
+        perfis: [Perfil]
+        perfil(id: Int): Perfil
     }
     type Produto {
         nome: String!
         preco: Float!
         desconto: Float
         precoComDesconto: Float
+    }
+
+    type Perfil {
+        id: Int
+        nome: String
     }
 `
 
@@ -60,6 +72,10 @@ const resolvers = {
         salario(usuario) {
             return usuario.salario_real
         },
+    },
+
+    Perfil: {
+
     },
     Query: {
         ola() {
@@ -98,9 +114,15 @@ const resolvers = {
         usuario(_, { id }) {
             const selecionados = usuarios.filter(u => u.id == id)
             return selecionados ? selecionados[0] : null
+        },
+        perfis() {
+            return perfis
+        },
+        perfil(_, { id }) {
+            const selecionados = perfis.filter(p => p.id == id)
+            return selecionados ? selecionados[0] : null
         }
     },
-
 }
 
 const server = new ApolloServer({
