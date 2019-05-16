@@ -22,7 +22,7 @@ const typeDefs = gql`
     #pontos de entrada da sua API!
     #o ! quer dizer que ele é obrigatório.
     type Usuario {
-        id: ID
+        id: Int
         nome: String!
         email: String!
         idade: Int
@@ -36,6 +36,7 @@ const typeDefs = gql`
         produtoEmDestaque: Produto
         numerosMegaSena: [Int!]!
         usuarios: [Usuario]
+        usuario(id: Int): Usuario
     }
     type Produto {
         nome: String!
@@ -93,6 +94,10 @@ const resolvers = {
         },
         usuarios() {
             return usuarios
+        },
+        usuario(_, { id }) {
+            const selecionados = usuarios.filter(u => u.id == id)
+            return selecionados ? selecionados[0] : null
         }
     },
 
