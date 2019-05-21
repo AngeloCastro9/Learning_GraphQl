@@ -1,5 +1,7 @@
 const usuario = require('./Usuario')
+const perfil = require('./pefil')
 
 module.exports = {
-    ...usuario
+    ...usuario,
+    ...perfil,
 }
