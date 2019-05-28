@@ -12,6 +12,8 @@ Ferramentas do node usadas.
 Banco-de-dados: 
 >npm install -s knex mysql
 
-Para criarmos o arquivo knexfile.js, usamos o comando: >npx knex init 
+Para criarmos o arquivo knexfile.js, usamos o comando: 
+>npx knex init 
 
-para criarmos uma nova migration, usamos o comando: >npx knex migrate:make 'nome_da_tabela'
+para criarmos uma nova migration, usamos o comando: 
+>npx knex migrate:make 'nome_da_tabela'
