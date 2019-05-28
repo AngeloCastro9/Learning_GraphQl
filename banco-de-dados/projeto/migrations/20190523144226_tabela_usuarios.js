@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
       table.string('nome').notNull()
       table.string('email').notNull().unique()
       table.string('senha', 60).notNull()
-      table.boolean('ativo').notNull.defaultTo(true)
+      table.boolean('ativo').notNull().defaultTo(true)
       table.timestamp('data_criacao').defaultTo(knex.fn.now())
   })
 };
