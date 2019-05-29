@@ -17,3 +17,6 @@ Para criarmos o arquivo knexfile.js, usamos o comando:
 
 para criarmos uma nova migration, usamos o comando: 
 >npx knex migrate:make 'nome_da_tabela'
+
+Na pasta desafios, dentro de banco-de-dados:
+>npm install
